@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kalyani Mobile Shop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family: Times New Roman;
+    background:#f2f2f2;
+}
+header{
+    background:#2c3e50;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+nav{
+    background:#34495e;
+    display:flex;
+    justify-content:space-around;
+    padding:10px;
+    flex-wrap:wrap;
+}
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:5px;
+}
+.cart{
+    color:yellow;
+}
+.section{
+    padding:20px;
+    text-align:center;
+}
+.products{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+.product{
+    background:white;
+    width:220px;
+    padding:15px;
+    border-radius:8px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+.product img{
+    width:100%;
+}
+button{
+    background:#27ae60;
+    color:white;
+    border:none;
+    padding:8px;
+    width:100%;
+    border-radius:5px;
+    cursor:pointer;
+}
+button:hover{
+    background:#2ecc71;
+}
+.offers ul{
+    list-style:none;
+    padding:0;
+}
+.contact input, .contact textarea{
+    width:90%;
+    padding:8px;
+    margin:8px;
+}
+footer{
+    background:#2c3e50;
+    color:white;
+    text-align:center;
+    padding:10px;
+}
+@media(max-width:600px){
+    .products{
+        flex-direction:column;
+        align-items:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Kalyani Mobile Shop</h1>
+    <p>Latest mobiles at best price</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#offers">Offers</a>
+    <a href="#contact">Contact</a>
+    <span class="cart">🛒 Cart: <span id="cartCount">0</span></span>
+</nav>
+
+<section id="home" class="section">
+    <h2>Welcome</h2>
+    <p>Buy original smartphones with warranty and service.</p>
+</section>
+
+<section id="products" class="section">
+    <h2>Our Mobiles</h2>
+    <div class="products">
+
+        <div class="product">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.skZlHxAdD0B1zYrxGTNQfgHaEK?pid=Api&P=0&h=220">
+            <h3>Samsung Galaxy S23</h3>
+            <p>₹20,000</p>
+            <button onclick="addToCart('Samsung Galaxy S23')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="https://tse3.mm.bing.net/th/id/OIP.LpH9SNl11EFyDAuhgMBqzwHaHa?pid=Api&P=0&h=220">
+            <h3>Redmi Note 9</h3>
+            <p>₹15,000</p>
+            <button onclick="addToCart('Redmi Note 9')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="https://tse3.mm.bing.net/th/id/OIP.47hlW2Nbq3iVwQlk8oCktAHaHa?pid=Api&P=0&h=220">
+            <h3>iPhone 15</h3>
+            <p>₹60,000</p>
+            <button onclick="addToCart('iPhone 15')">Add to Cart</button>
+        </div>
+
+    </div>
+</section>
+
+<section id="offers" class="section offers">
+    <h2>Special Offers 🎉</h2>
+    <ul>
+        <li>10% off on Samsung</li>
+        <li>Free earphones with Redmi</li>
+        <li>No-cost EMI on iPhone</li>
+    </ul>
+</section>
+
+<section id="contact" class="section contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="return sendMessage()">
+
+        <input type="text" id="name" placeholder="Your Name"
+               required pattern="[A-Za-z ]{3,}"
+               title="Name must contain only letters and minimum 3 characters"><br>
+
+        <input type="email" id="email" placeholder="Your Email"
+               required
+               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+               title="Enter a valid email address"><br>
+
+        <textarea id="message" placeholder="Message"
+                  required minlength="10"
+                  title="Message must be at least 10 characters"></textarea><br>
+
+        <button type="submit">Send</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 Kalyani Mobile Shop | Phone: 8237900715  | Ambad Nashik
+</p>
+</footer>
+
+<script>
+let cart = 0;
+ 
+function addToCart(item){
+    cart++;
+    document.getElementById("cartCount").innerText = cart;
+    alert(item + " added to cart!");
+}
+
+function sendMessage(){
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let message = document.getElementById("message").value.trim();
+
+    let namePattern = /^[A-Za-z ]{3,}$/;
+    let emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+    if(!namePattern.test(name)){
+        alert("❌ Invalid Name");
+        return false;
+    }
+    if(!emailPattern.test(email)){
+        alert("❌ Invalid Email");
+        return false;
+    }
+    if(message.length < 10){
+        alert("❌ Message must be at least 10 characters");
+        return false;
+    }
+
+    alert("✅ Thank you! We will contact you soon.");
+    return true;
+}
+</script>
+
+</body>
+</html>
